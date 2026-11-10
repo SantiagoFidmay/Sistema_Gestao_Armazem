@@ -1,0 +1,204 @@
+
+### 1. Cadastrar funcionário
+POST http://localhost:3000/funcionario
+Content-Type: application/json
+
+{
+    "nome": "Roberto",
+    "email": "roberto@gmail.com",
+    "senha": "abc"
+}
+
+
+### 2. Fazer login (armazena o token automaticamente)
+# @name loginReq
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "roberto@gmail.com",
+    "senha": "abc"
+}
+
+
+### 3. Cadastrar fornecedor
+POST http://localhost:3000/fornecedor
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "nome": "Tech Distribuidora",
+    "cpf": "12345678000199",
+    "email": "contato@tech.com",
+    "telefone": "47999999999"
+}
+
+
+### 4. Cadastrar outro fornecedor
+POST http://localhost:3000/fornecedor
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "nome": "Brasil Atacado",
+    "cpf": "98765432000188",
+    "email": "contato@brasil.com",
+    "telefone": "47988888888"
+}
+
+
+### 5. Cadastrar terceiro fornecedor
+POST http://localhost:3000/fornecedor
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "nome": "Global Produtos",
+    "cpf": "11222333000144",
+    "email": "contato@global.com",
+    "telefone": "47977777777"
+}
+
+### 5. Cadastrar terceiro fornecedor
+POST http://localhost:3000/fornecedor
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "nome": "teste",
+    "cpf": "11222333000144",
+    "email": "contato@global.com",
+    "telefone": "47977777777"
+}
+
+
+### 6. Listar fornecedores
+GET http://localhost:3000/fornecedores
+Authorization: {{loginReq.response.body.token}}
+
+
+### 7. Consultar fornecedor por ID
+GET http://localhost:3000/fornecedor/1
+Authorization: {{loginReq.response.body.token}}
+
+
+### 8. Consultar fornecedor por nome
+GET http://localhost:3000/fornecedor/buscarNome/teste
+Authorization: {{loginReq.response.body.token}}
+
+
+
+
+### 10. Cadastrar produto
+POST http://localhost:3000/produto
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "descricao": "Notebook Dell",
+    "categoria": "Eletronicos",
+    "quantidade": 50,
+    "codLote": "LT001",
+    "idFornecedor": 1
+}
+
+
+### 11. Cadastrar outro produto
+POST http://localhost:3000/produto
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "descricao": "Cadeira Escritorio",
+    "categoria": "Moveis",
+    "quantidade": 100,
+    "codLote": "LT002",
+    "idFornecedor": 2
+}
+
+
+### 12. Cadastrar terceiro produto
+POST http://localhost:3000/produto
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "descricao": "Monitor Samsung",
+    "categoria": "Eletronicos",
+    "quantidade": 75,
+    "codLote": "LT003",
+    "idFornecedor": 3
+}
+
+
+### 13. Listar produtos
+GET http://localhost:3000/produtos
+Authorization: {{loginReq.response.body.token}}
+
+
+### 14. Consultar produto por ID
+GET http://localhost:3000/produto/1
+Authorization: {{loginReq.response.body.token}}
+
+
+### 15. Atualizar produto
+PUT http://localhost:3000/produto/1
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "descricao": "Notebook Dell Inspiron",
+    "categoria": "Eletronicos",
+    "quantidadeEstoque": 60,
+    "codigoLote": "LT001",
+    "idFornecedor": 1
+}
+
+
+### 16. Registrar movimento de ENTRADA
+POST http://localhost:3000/movimento
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "tipo": "ENTRADA",
+    "quantidade": 20,
+    "data": "2026-11-10",
+    "idProduto": 1
+}
+
+
+### 17. Registrar movimento de SAIDA
+POST http://localhost:3000/movimento
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "tipo": "SAIDA",
+    "quantidade": 10,
+    "data": "2026-11-10",
+    "idProduto": 2
+}
+
+
+### 18. Registrar outro movimento de ENTRADA
+POST http://localhost:3000/movimento
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "tipo": "ENTRADA",
+    "quantidade": 15,
+    "data": "2026-11-10",
+    "idProduto": 3
+}
+
+
+### 19. Listar movimentos
+GET http://localhost:3000/movimentos
+Authorization: {{loginReq.response.body.token}}
+
+
+### 20. Excluir fornecedor
+DELETE http://localhost:3000/fornecedor/3
+Authorization: {{loginReq.response.body.token}}
